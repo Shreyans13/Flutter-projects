@@ -5,10 +5,6 @@ void main() {
   runApp(MyApp());
 }
 
-Color primary = Color(0xff845ec2);
-Color secondary = Color(0xff2d8ba8);
-Color text = Color(0xffdbf2fb);
-
 class MyApp extends StatelessWidget {
   // const ({Key? key}) : super(key: key);
 
