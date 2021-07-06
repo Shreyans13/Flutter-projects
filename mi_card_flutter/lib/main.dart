@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               "Full Stack Developer".toUpperCase(),
               style: GoogleFonts.playfairDisplay(
                 fontSize: 20.0,
-                color: text,
+                color: Colors.white,
                 letterSpacing: 2.5,
               ),
             ),
