@@ -1,9 +1,15 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
+import 'package:shake/shake.dart';
 
 void main() => runApp(XylophoneApp());
 
-class XylophoneApp extends StatelessWidget {
+class XylophoneApp extends StatefulWidget {
+  @override
+  _XylophoneAppState createState() => _XylophoneAppState();
+}
+
+class _XylophoneAppState extends State<XylophoneApp> {
   List<Color> colorList = [
     Colors.purple,
     Colors.indigo,
@@ -13,10 +19,35 @@ class XylophoneApp extends StatelessWidget {
     Colors.orange,
     Colors.red
   ];
+  void changeColor() {
+    setState(() {
+      colorList.shuffle();
+    });
+  }
+
+  late ShakeDetector detector;
+
+  @override
+  void initState() {
+    super.initState();
+    detector = ShakeDetector.autoStart(onPhoneShake: () {
+      changeColor();
+    });
+    // To close: detector.stopListening();
+    // ShakeDetector.waitForStart() waits for user to call detector.startListening();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    detector.stopListening();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: colorList[0],
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
